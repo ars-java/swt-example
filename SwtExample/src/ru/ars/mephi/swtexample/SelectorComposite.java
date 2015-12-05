@@ -3,6 +3,8 @@ package ru.ars.mephi.swtexample;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.MouseMoveListener;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -15,6 +17,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.ColorDialog;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FontDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
@@ -115,10 +118,25 @@ public class SelectorComposite extends Composite {
 	private void createSelector(String labelText, SelectionListener listener) {
 		final Label label = new Label(this, SWT.NONE);
 		label.setText(labelText);
-		label.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		label.setLayoutData(new GridData(SWT.RIGHT, SWT.FILL, false, false, 2, 1));
+		
+		final Label label1 = new Label(this, SWT.NONE);
+		label1.setText(labelText + "-----");
+		label1.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
+		
+		GridData gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gd.horizontalIndent = 20;
+		
+		label1.setLayoutData(gd);
 		
 		final Button button = new Button(this, SWT.PUSH);
 		button.setText("Выбрать...");
+		
+		gd = new GridData(SWT.FILL, SWT.FILL, true, false);
+		gd.horizontalIndent = 50;
+		
+		
+		button.setLayoutData(gd);
 		button.addSelectionListener(listener);
 	}
 	
@@ -130,3 +148,17 @@ public class SelectorComposite extends Composite {
 		return new Color(getShell().getDisplay(), rgb);
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
